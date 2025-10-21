@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Maya Polanco — Boxeadores</title>
+  <meta name="description" content="Maya Polanco — joven boxeadora con pasión y talento en el ring." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0b0d;
+      --card:#111114;
+      --accent:#d62828;
+      --muted:#9aa0a6;
+      --glass: rgba(255,255,255,0.03);
+      --maxw:1100px;
+      font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#050506 0%, var(--bg) 100%);color:#fff;line-height:1.45}
+    .container{max-width:var(--maxw);margin:0 auto;padding:28px}
+    header{display:flex;align-items:center;gap:28px;padding:30px;border-radius:14px;background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent);box-shadow:0 8px 30px rgba(0,0,0,0.6)}
+    .hero-text{flex:1}
+    h1{font-size:clamp(28px,4vw,44px);margin:0 0 8px 0;letter-spacing:0.6px}
+    .subtitle{color:var(--muted);font-weight:400;margin-bottom:16px}
+    .tag{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--glass);color:var(--accent);font-weight:700;margin-right:8px}
+    .stats{display:flex;gap:12px;margin-top:12px}
+    .stat{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:12px;border-radius:10px;min-width:110px;text-align:center}
+    .stat b{display:block;font-size:18px}
+    .stat small{color:var(--muted)}
+    .card{background:var(--card);padding:18px;border-radius:12px;margin-top:16px}
+    .card h2{margin:0 0 10px 0}
+    .achievements li{margin-bottom:8px}
+    .profiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:20px}
+    .profile-card{background:var(--card);padding:12px;border-radius:10px;text-align:center;cursor:pointer;transition:transform 0.2s}
+    .profile-card:hover{transform:scale(1.05)}
+    .profile-card b{display:block;margin-top:8px;font-size:16px}
+    footer{text-align:center;color:var(--muted);margin:30px 0}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="hero-text">
+        <div class="tag">Boxeadores</div>
+        <h1 id="profile-name">Maya Polanco</h1>
+        <div class="subtitle" id="profile-desc">Una joven que ha encontrado en el boxeo una forma de crecer, superarse y demostrar su pasión por el deporte.</div>
+        <div class="stats" id="profile-stats">
+          <div class="stat"><b>14</b><small>Años</small></div>
+          <div class="stat"><b>Ligera</b><small>Categoría</small></div>
+          <div class="stat"><b>45 kg</b><small>Peso</small></div>
+          <div class="stat"><b>Amateur</b><small>Competencias</small></div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <div class="card" id="profile-content">
+          <h2 id="profile-title">Maya Polanco</h2>
+          <p id="profile-text">Maya Polanco es una joven boxeadora de Madrid. Con solo 14 años, ha demostrado una gran pasión por el boxeo, entrenando con constancia y disfrutando de cada sesión en el gimnasio. Quienes la conocen destacan su energía, disciplina y humildad.</p>
+          <p id="profile-extra">Empezó a boxear en 2023, motivada por su curiosidad y ganas de probar algo diferente. Hoy, el boxeo es para ella una forma de expresión y un camino para superarse día a día, tanto dentro como fuera del ring.</p>
+          <div class="card" style="margin-top:16px">
+            <h2>Logros</h2>
+            <ul class="achievements" id="profile-achievements">
+              <li><strong>2024</strong> — Finalista en torneo juvenil de la Comunidad de Madrid</li>
+              <li><strong>2023</strong> — Medalla de bronce en campeonato regional</li>
+              <li><strong>2023</strong> — Reconocimiento por esfuerzo y dedicación en su escuela de boxeo</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <h2>Otros perfiles destacados</h2>
+          <div class="profiles" id="profiles">
+            <!-- Generar automáticamente 100 perfiles ficticios -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © <span id="year"></span> Boxeadores Destacados
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const profilesContainer = document.getElementById('profiles');
+    const profileNames = ['Daniel Ruiz', 'Laura Santos', 'Alex Vega', 'Sofia Martín', 'Carlos Pérez', 'Lucía Gómez', 'Miguel Torres', 'Ana Jiménez', 'David Sánchez', 'Elena Díaz'];
+
+    for(let i=0;i<100;i++){
+      const name = profileNames[i % profileNames.length];
+      const card = document.createElement('div');
+      card.className = 'profile-card';
+      card.dataset.name = name;
+      card.dataset.desc = 'Boxeador/a juvenil con talento y dedicación.';
+      card.dataset.text = name + ' entrena desde joven y ha mostrado gran progreso en el ring.';
+      card.dataset.extra = 'Su objetivo es mejorar día a día y competir a nivel nacional.';
+      card.dataset.achievements = JSON.stringify([
+        {year:'2024', text:'Participación destacada en torneo juvenil'},
+        {year:'2023', text:'Reconocimiento por esfuerzo y constancia'}
+      ]);
+      card.innerHTML = `<b>${name}</b>`;
+      profilesContainer.appendChild(card);
+    }
+
+    const profileCards = document.querySelectorAll('.profile-card');
+    profileCards.forEach(p => {
+      p.addEventListener('click', () => {
+        document.getElementById('profile-name').textContent = p.dataset.name;
+        document.getElementById('profile-title').textContent = p.dataset.name;
+        document.getElementById('profile-desc').textContent = p.dataset.desc;
+        document.getElementById('profile-text').textContent = p.dataset.text;
+        document.getElementById('profile-extra').textContent = p.dataset.extra;
+
+        const list = document.getElementById('profile-achievements');
+        list.innerHTML = '';
+        const achievements = JSON.parse(p.dataset.achievements);
+        achievements.forEach(a => {
+          const li = document.createElement('li');
+          li.innerHTML = `<strong>${a.year}</strong> — ${a.text}`;
+          list.appendChild(li);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
